@@ -1,0 +1,3 @@
+the definition of higer order functions does at least one of the following
+1) but take in one or more functions as a arguments
+2) returns a functions as its result
