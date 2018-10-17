@@ -1,12 +1,15 @@
 package main
 
 import "fmt"
-
+//import "math"
+// General buffer array to create slice
 var buffer [200]byte
 
+// this function is pass by value the slice header remains the same
+// but the function can have effect on the values
 func addOnetoslice(slice []int){
 	for i := range slice {
-		//slice[i] = slice[i] + i instand of this
+		//slice[i] = slice[i] + i instend of this
 		slice[i]++
 	}
 
@@ -27,7 +30,7 @@ func subtractonefromslice(slice []byte) []byte{
 	return slice[:len(slice)-1]
 }
 
-func main() {
+func sliceHeader() {
 	slice := buffer[:10]
 	fmt.Printf("before : %T  %v\n", slice, len(slice))
 	newSlice := subtractonefromslice(slice)
@@ -41,17 +44,18 @@ func main() {
 	fmt.Println(newSlice)
 	fmt.Println(slice)
 }
+//* is dereferencing the address to the value, 
+//(*slice) get the slice(value) but just *slice gets (type *[]bytes)
+func modifySliceHeader(slice *[]byte) {
+	*slice = (*slice)[:len(*slice)-1]
+}
 
-
-
-
-
-
-
-
-
-
-
+func PtrSliceHeader(){
+	slice := buffer[10:20]
+	fmt.Println(len(slice))
+	modifySliceHeader(&slice)
+	fmt.Println(len(slice))
+}	
 
 
 
