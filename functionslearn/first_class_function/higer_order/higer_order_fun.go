@@ -23,7 +23,28 @@ func a(arg1, arg2 int) func() int {
 	}
 }
 
-func main() {
+func mainSimple2() {
 	g := simple2(a, 2, 3)
 	fmt.Println(g())
+}
+
+func greatings() func(arg string) string {
+	h := "hello"
+	f := func(arg string) string{
+		h = h + " " + arg
+		return h
+	}
+	return f
+}
+
+func main() {
+	a := greatings()
+	b := greatings()
+	fmt.Println(a("world"))
+	fmt.Println(b("tony"))
+
+	fmt.Println(a("!!"))
+	fmt.Println(b("and jerry"))
+	a("something")
+	fmt.Println(a("else"))
 }
