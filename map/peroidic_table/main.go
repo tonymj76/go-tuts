@@ -107,6 +107,42 @@ func niceFmt(no int) string {
 	return fmt.Sprintf("Atomic NO: %d\nSymbol: %s\nName:\t%s\nState:\t%s\n", no, syEl, nEl, stEl)
 }
 
+// switch func that calls everything together
+func allElement(ele interface{}) string {
+	// variable for the items to be returned
+	var (
+		atomicNumber int
+		symbol       string
+		name         string
+		state        string
+	)
+
+	switch f := ele.(type) {
+	case string:
+		if ele == "full" {
+			element := peroidicTable()
+			for atomic, valueMap := range element {
+				for sym, valueMap2 := range valueMap {
+					for nEl, sEl := range valueMap2 {
+						atomicNumber = atomic
+						symbol = sym
+						name = nEl
+						state = sEl
+						return fmt.Sprintf("Atomic NO: %d\nSymbol: %s\nName:\t%s\nState:\t%s\n", atomicNumber, symbol, name, state)
+					}
+				}
+			}
+		}
+		return fmt.Sprintf("%s is not a valid input try `full`", ele)
+
+	case int:
+		return niceFmt(int(f))
+	default:
+		return "Not found"
+	}
+}
+
 func main() {
 	fmt.Println(niceFmt(4))
+	fmt.Println(allElement("full"))
 }
