@@ -145,4 +145,11 @@ func allElement(ele interface{}) string {
 func main() {
 	fmt.Println(niceFmt(4))
 	fmt.Println(allElement("full"))
+
+	buffer := make([]int, 200)
+	for i := 1; i<len(buffer); i++ {
+		buffer[i]++
+	}
+	fmt.Println(buffer)
+	fmt.Printf("%T-- %T\n", "something"[0],int("something"[0]))
 }
