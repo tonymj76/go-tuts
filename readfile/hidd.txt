@@ -1,0 +1,25 @@
+http://zqktlwi4fecvo6ri.onion/wiki/#Financial_Services
+http://torlinksd6pdnihy.onion/
+http://xmh57jrzrnw6insl.onion/ tor search engine 
+https://developers.google.com/recaptcha/docs/faq#my-computer-or-network-may-be-sending-automated-queries  for capture 
+
+http://zqktlwi4fecvo6ri.onion/wiki/How_to_Exit_the_Matrix 
+http://zqktlwi4fecvo6ri.onion/wiki/Network_Attributes_of_your_computer
+http://hackerw6dcplg3ej.onion/?c=techbooks
+
+
+
+Errors:
+
+user' is an invalid keyword argument for this function why this error
+this error is cus by login required to excess a usr that is not yet login
+
+
+IntegrityError at /profile/profile-info/
+NOT NULL constraint failed: profile_data_ycuser.yc_user_id
+
+
+
+ValueError at /profile/profile-info/
+Cannot assign "<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7f0c08646080>>": "YCUser.yc_user" must be a "User" instance.
+ANS: this means the usr is not login in or authenticate by the server you have to login first so that request.user which reference the User who is currently login at the moment else AnonymousUser
