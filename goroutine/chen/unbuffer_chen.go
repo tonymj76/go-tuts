@@ -18,14 +18,14 @@ package main
 import "fmt"
 
 type people struct {
-	name 			string
-	age  			int
-	inter			giveName
+	name  string
+	age   int
+	inter giveName
 }
 
 type limitedTries struct {
-	I  	giveName
-	name  string
+	I    giveName
+	name string
 }
 
 type worker struct {
@@ -41,11 +41,11 @@ type company struct {
 }
 
 type giveName interface {
-	myName()(s string, err error)
+	myName() (s string, err error)
 }
 
 // Note this method and why i don't use := in s, err
-func (n *limitedTries) myName() (s string, err error){
+func (n *limitedTries) myName() (s string, err error) {
 	s, err = n.I.myName()
 	return
 }
@@ -76,7 +76,7 @@ func main() {
 		name:   "Build2day",
 		job:    []string{"computer op", "dish washer", "something"},
 	}
-	
+
 	fmt.Println(c.job[2])
 	giveNames(p1.inter)
 }

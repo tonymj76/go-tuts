@@ -30,7 +30,7 @@ func mainSimple2() {
 
 func greatings() func(arg string) string {
 	h := "hello"
-	f := func(arg string) string{
+	f := func(arg string) string {
 		h = h + " " + arg
 		return h
 	}

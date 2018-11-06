@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"net/http"
 	"io"
 	"log"
+	"net/http"
+	"os"
 )
 
 func init() {
@@ -28,8 +28,8 @@ func main() {
 	// copies from Body to Stdout
 	// os.Stdout implement the io.Writer and res.Body imple io.Reader
 	io.Copy(os.Stdout, res.Body)
-	
-	if e:= res.Body.Close(); e != nil{
+
+	if e := res.Body.Close(); e != nil {
 		fmt.Println("did you print? ", e)
 	}
 

@@ -1,17 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
-	"os"
-	"bufio"
 	"log"
+	"os"
 )
+
 // Record of my files
 type Record struct {
-	Name 			string
-	SecredKey 	string
-	Diary 		string
+	Name      string
+	SecredKey string
+	Diary     string
 }
 
 func check(e error) {
@@ -38,19 +39,18 @@ func writeDataJSON() {
 	}
 }
 
-func readDataJSON() Record{
+func readDataJSON() Record {
 	var p Record
 	file, err := os.Open("Dairy_file")
 	check(err)
 	defer file.Close()
 	json.NewDecoder(file).Decode(&p)
-	
+
 	return p
 }
 
+func filter(s Record, f func(Record) bool) Record {
 
-func filter(s Record, f func(Record) bool) Record{
-	
 	return s
 
 }
@@ -66,11 +66,11 @@ func choiceOption(one int) {
 		fmt.Print("Enter your secret Key: ")
 		secretKey := giveText()
 		// filter call
-		record := filter(readDataJSON(), func (r Record) bool  {
-		if r.SecredKey == fmt.Sprintf("%s%s", secretKey, "\n") {
-			return true
-		}
-		return false
+		record := filter(readDataJSON(), func(r Record) bool {
+			if r.SecredKey == fmt.Sprintf("%s%s", secretKey, "\n") {
+				return true
+			}
+			return false
 		})
 		fmt.Println(record)
 		ms()
@@ -83,7 +83,7 @@ func choiceOption(one int) {
 		fmt.Println("Not a number")
 		os.Exit(0)
 	}
-	
+
 }
 
 func getUserIput() []Record {
@@ -99,7 +99,7 @@ func getUserIput() []Record {
 	return sliceRecord
 }
 
-func ms(){
+func ms() {
 	fmt.Println("Hello welcome to my Diary Book\n\t\tEnter\t1:to input date\n\t\t\t2:To read your input\n\t\t\t3:to close.")
 }
 

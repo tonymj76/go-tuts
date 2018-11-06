@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -15,7 +15,7 @@ func check(e error) {
 
 func main() {
 	res, err := http.Get("http://www.gutenberg.org/files/2701/old/moby10b.txt")
-	
+
 	check(err)
 	// why res.Body.Close() not res.Close() becus res.Body is io.reader type which means we are reading a file that we need to close
 
@@ -30,7 +30,7 @@ func main() {
 	// check(err)
 	// fmt.Println(r, reader.Size())
 
-	// the use of string.Newreader(f string) *Reader 
+	// the use of string.Newreader(f string) *Reader
 
 	scanner := bufio.NewScanner(reader)
 	scanner.Split(bufio.ScanWords)

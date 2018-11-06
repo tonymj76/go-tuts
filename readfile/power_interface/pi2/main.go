@@ -1,10 +1,10 @@
 package main
 
 import (
-	"os"
-	"io"
 	"bytes"
 	"fmt"
+	"io"
+	"os"
 )
 
 func main() {

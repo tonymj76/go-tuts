@@ -1,8 +1,10 @@
 package main
 
-import ("fmt"
+import (
+	"fmt"
+	"runtime"
 	"sync"
-	"runtime")
+)
 
 var wg sync.WaitGroup
 
@@ -19,16 +21,16 @@ func main() {
 }
 
 func primeNumber(p string) {
-		defer wg.Done()
-// seriously what is label next in golang
+	defer wg.Done()
+	// seriously what is label next in golang
 next:
-		for outer:=2; outer < 50000; outer++{
-			for inner :=2 ; inner < outer; inner++ {
-				if outer%inner == 0{
-					continue next  
-				}
+	for outer := 2; outer < 50000; outer++ {
+		for inner := 2; inner < outer; inner++ {
+			if outer%inner == 0 {
+				continue next
 			}
-			fmt.Printf("%s:%d\n", p, outer)
 		}
-		fmt.Println("Completed", p)
+		fmt.Printf("%s:%d\n", p, outer)
 	}
+	fmt.Println("Completed", p)
+}

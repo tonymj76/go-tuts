@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-
 func main() {
 	myGreeting := map[int]string{
 		0: "Good morning",
@@ -17,7 +16,7 @@ func main() {
 		delete(myGreeting, 2)
 		fmt.Println("val: ", value)
 		fmt.Println("oks: ", ok)
-	}else {
+	} else {
 		fmt.Println("That value doesn't ok..")
 		fmt.Println("val: ", value)
 		fmt.Println("oks: ", ok)

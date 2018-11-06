@@ -29,7 +29,7 @@ func showName(arg giveName) {
 	if name, ok := arg.myName(); ok {
 		fmt.Println(name)
 	}
-	
+
 }
 func main() {
 	p1 := people{

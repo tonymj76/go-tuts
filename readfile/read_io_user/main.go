@@ -1,11 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"bufio"
 	"strings"
 )
+
 // read the input the user insert in the terminal
 func readInputUser() {
 	reader := bufio.NewReader(os.Stdin)

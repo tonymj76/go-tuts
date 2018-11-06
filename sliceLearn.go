@@ -9,19 +9,19 @@ import (
 
 //making a method
 
-type AreaOfCircle struct {
+type areaOfCircle struct {
 	r float64
 }
 
-func (param *AreaOfCircle) areaOfCircle() float64 {
+func (param *areaOfCircle) areaOfCircle() float64 {
 	return math.Round(math.Pi * math.Pow(param.r, 2))
 }
 
-func Areas() {
-	circle1 := AreaOfCircle{r: 3.0}
-	circle2 := AreaOfCircle{553.3}
-	circle3 := AreaOfCircle{3.43}
-	circle4 := AreaOfCircle{89.5}
+func areas() {
+	circle1 := areaOfCircle{r: 3.0}
+	circle2 := areaOfCircle{553.3}
+	circle3 := areaOfCircle{3.43}
+	circle4 := areaOfCircle{89.5}
 	fmt.Printf("%v\n%v\n%v\n%v\n", circle1.areaOfCircle(), circle2.areaOfCircle(), circle3.areaOfCircle(), circle4.areaOfCircle())
 }
 
@@ -31,7 +31,7 @@ func (p *path) truncatePath() {
 	holder := bytes.LastIndex(*p, []byte("/"))
 	if holder > 0 {
 		*p = (*p)[:holder] // why put in (*p)
-								//becus to dereference and call a function to it
+		//becus to dereference and call a function to it
 	}
 }
 
@@ -41,7 +41,8 @@ func mainfortrunc() {
 	fmt.Printf("%s\n", pathName)
 	fmt.Println(os.Getwd())
 }
-// learning user define type like interface and method set 
+
+// learning user define type like interface and method set
 type user struct {
 	username string
 	position string
@@ -52,15 +53,15 @@ type admin struct {
 	position string
 }
 
-type notice interface{
+type notice interface {
 	notify()
 }
 
-func (p *user) notify(){
+func (p *user) notify() {
 	fmt.Printf("username is %v and position is %v\n", p.username, p.position)
 }
 
-func (p *admin) notify(){
+func (p *admin) notify() {
 	fmt.Printf("username is %v and position is %v\n", p.username, p.position)
 }
 
@@ -69,40 +70,14 @@ func usernotification(n notice) {
 }
 
 func main() {
-	u :=user{"tony", "manager"}
-	a :=admin{"Mr Cross", "MD"}
+	u := user{"tony", "manager"}
+	a := admin{"Mr Cross", "MD"}
 
 	usernotification(&u)
 	usernotification(&a)
-	
-	dict := map[string]int{"one":1}
+
+	dict := map[string]int{"one": 1}
 	dict2 := make(map[int]string)
-	dict2[2]="two"
+	dict2[2] = "two"
 	fmt.Println(dict["one"], dict2[2])
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

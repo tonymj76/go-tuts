@@ -4,17 +4,18 @@ import (
 	"fmt"
 	//"strings"
 	//"io/ioutil"
+	"encoding/json"
 	"log"
 	"os"
-	"encoding/json"
 )
 
 type person struct {
-	Name string
-	Email string
-	Age int `json:"old"`
+	Name   string
+	Email  string
+	Age    int `json:"old"`
 	Gender string
 }
+
 func check(e error) {
 	if e != nil {
 		log.Fatalln(e)
@@ -32,7 +33,7 @@ func main() {
 	// json.NewEncoder(os.Stdout).Encode(p)
 	defer f.Close()
 	json.NewEncoder(f).Encode(&p)
-	
+
 	// i have create a file now is time to read it as a go type
 	var p1 streamPerson
 
@@ -51,12 +52,11 @@ func main() {
 	fmt.Println(p1.Age, p1.Name, p1.Email, p1.Gender)
 	fileByte.Close()
 
-
 }
 
 type streamPerson struct {
-	Name string
-	Email string
-	Age int `json:"old"`
+	Name   string
+	Email  string
+	Age    int `json:"old"`
 	Gender string
 }

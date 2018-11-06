@@ -1,11 +1,11 @@
 package main
 
 import (
-		"fmt"
-		"bufio"
-		 "io/ioutil"
-		 "os"
-		// "io"
+	"bufio"
+	"fmt"
+	"io/ioutil"
+	"os"
+	// "io"
 )
 
 func check(e error) {
@@ -45,6 +45,5 @@ func main() {
 	b4, err := r4.Peek(100)
 	check(err)
 	fmt.Printf("10 bytes: %s\n", b4)
-
 
 }

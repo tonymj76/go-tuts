@@ -1,13 +1,14 @@
 package main
 
 import (
-	"os"
-	"io/ioutil"
-	"fmt"
 	"bufio"
+	"fmt"
+	"io/ioutil"
+	"os"
 )
+
 func check(e error) {
-	if e != nil{
+	if e != nil {
 		panic(e)
 	}
 }

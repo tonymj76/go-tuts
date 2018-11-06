@@ -1,8 +1,9 @@
 package main
 
-import  "fmt"
+import "fmt"
+
 // shows you don't need pointers for slice, map and chan due to the are pass by value references
-func changeMe(letter []string){
+func changeMe(letter []string) {
 	letter[0] = "tony"
 	fmt.Println(letter)
 }
