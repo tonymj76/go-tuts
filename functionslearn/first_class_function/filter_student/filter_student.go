@@ -15,7 +15,7 @@ type student struct {
 func filter(s []student, f func(student) bool) []student {
 	var r []student
 	for _, k := range s {
-		if f(k) == true {
+		if f(k) {
 			r = append(r, k)
 		}
 	}
@@ -45,6 +45,7 @@ func main() {
 		grade:     "B"}
 
 	gradeSlice := []student{c1, c2, c3}
+	// func call
 	f := filter(gradeSlice, func(x student) bool {
 		if x.grade == "B" {
 			return true
