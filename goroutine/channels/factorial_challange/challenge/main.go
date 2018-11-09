@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func factorial(num int) chan int {
+func factorial(num int, s string) (chan int) {
 	out := make(chan int)
 	go func(){
 		total :=1
@@ -15,12 +15,15 @@ func factorial(num int) chan int {
 		out <- total
 		close(out)
 	}()
+	fmt.Printf("%s No:%d fac == ", s,num )
 	return out
 }
 
 func main() {
-	// this take off the item in the chan and also block main from existing 
-	for n := range factorial(5) {
-		fmt.Println(n)
-	}
+	for i:= 0; i<100; i++{
+		for n := range factorial(i+1, "foo") {
+			fmt.Println(n)
+		}
+
+	} 
 }
