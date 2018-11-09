@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 )
-
+const fileName = "d.json"
 // Record of my files
 type Record struct {
 	Name      string
@@ -30,28 +30,33 @@ func giveText() string {
 
 func writeDataJSON() {
 	holdRecord := getUserIput()
-	//dairyFile, err := os.Create("Dairy_file")
-	dairyFile, err := os.OpenFile("Dairy_file", os.O_APPEND|os.O_WRONLY, 0666)
+	var hR []Record
+	hR = append(hR, holdRecord)
+	//os.Create(fileName)
+	dairyFile, err := os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, 0666)
 	defer dairyFile.Close()
 	check(err)
-	for _, hr := range holdRecord {
-		json.NewEncoder(dairyFile).Encode(&hr)
-	}
+	json.NewEncoder(dairyFile).Encode(&hR)
 }
 
-func readDataJSON() Record {
-	var p Record
-	file, err := os.Open("Dairy_file")
+func readDataJSON() []Record {
+	var p []Record
+	file, err := os.Open(fileName)
 	check(err)
 	defer file.Close()
 	json.NewDecoder(file).Decode(&p)
-
+	log.Println(p)
 	return p
 }
 
-func filter(s Record, f func(Record) bool) Record {
-
-	return s
+func filter(s []Record, f func(Record) bool) []Record {
+	var userRecord []Record
+	for _, r := range s {
+		if f(r) {
+			userRecord = append(userRecord, r)
+		}
+	}
+	return userRecord
 
 }
 
@@ -86,17 +91,15 @@ func choiceOption(one int) {
 
 }
 
-func getUserIput() []Record {
+func getUserIput() Record {
 	var r Record
-	var sliceRecord []Record
 	fmt.Println("Enter name:")
 	r.Name = giveText()
 	fmt.Println("Enter secred key: ")
 	r.SecredKey = giveText()
 	fmt.Println("Enter Diary:")
 	r.Diary = giveText()
-	sliceRecord = append(sliceRecord, r)
-	return sliceRecord
+	return r
 }
 
 func ms() {
