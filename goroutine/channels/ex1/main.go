@@ -11,10 +11,10 @@ func main() {
 
 	go func(c <-chan int){
 		defer wg.Done()
-		// send
+		// receive item
 		rec := <-c
 		fmt.Println(rec)
 	}(c)
-	c <- 1 // this means recieves item
+	c <- 1 // this means send item
 	wg.Wait()
 }
