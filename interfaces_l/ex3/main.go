@@ -26,6 +26,7 @@ func (u *user) Notify() error {
 type notifier interface {
 	Notify() error
 }
+
 // The method set of the corresponding pointer type *T is the set of all methods with receiver *T or T
 // The method set of any other type T consists of all methods with receiver type T.
 func sendNotification(notifier notifier) error {
@@ -34,7 +35,7 @@ func sendNotification(notifier notifier) error {
 
 func main() {
 	p1 := user{"Tony", "tony@gmail.com"}
-	a1 := &Admin{user:p1, Level:"advance"}
+	a1 := &Admin{user: p1, Level: "advance"}
 	sendNotification(&p1)
 	sendNotification(a1)
 	fmt.Println(a1.user.Notify())

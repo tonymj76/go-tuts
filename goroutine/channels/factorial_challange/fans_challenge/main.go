@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sync"
 	"fmt"
+	"sync"
 )
 
 func main() {
@@ -26,21 +26,21 @@ func main() {
 		fmt.Println(n)
 	} */
 
-	ch1:= factorize(gen(3, 13))
-	ch2:= factorize(gen(13, 23))
-	ch3:= factorize(gen(13, 23))
+	ch1 := factorize(gen(3, 13))
+	ch2 := factorize(gen(13, 23))
+	ch3 := factorize(gen(13, 23))
 
 	for n := range merge(ch1, ch2, ch3) {
 		fmt.Println(n)
 	}
 }
 
-func gen(f1,f2 int) <-chan int {
+func gen(f1, f2 int) <-chan int {
 	out := make(chan int)
 	go func() {
 		defer close(out)
-		for j:=0; j<10000; j++{
-			for i:=f1; i<f2; i++{
+		for j := 0; j < 10000; j++ {
+			for i := f1; i < f2; i++ {
 				out <- i
 			}
 		}
@@ -49,19 +49,21 @@ func gen(f1,f2 int) <-chan int {
 }
 
 func fact(n int) int {
-	if n == 1 {return n}
-	return n*fact(n-1)
+	if n == 1 {
+		return n
+	}
+	return n * fact(n-1)
 }
 
 func factorize(ch <-chan int) <-chan int {
 	out := make(chan int)
 	go func() {
 		defer close(out)
-		for n := range ch{
+		for n := range ch {
 			out <- fact(n)
 		}
-		}()
-		return out
+	}()
+	return out
 }
 
 func merge(ch ...<-chan int) <-chan int {
@@ -69,13 +71,13 @@ func merge(ch ...<-chan int) <-chan int {
 	c := make(chan int)
 
 	outPut := func(cho <-chan int) {
-		for n:= range cho{
+		for n := range cho {
 			c <- n
 		}
 		defer wg.Done()
 	}
 	wg.Add(len(ch))
-	for _, x:=range ch{
+	for _, x := range ch {
 		go outPut(x)
 	}
 	go func() {
@@ -84,6 +86,7 @@ func merge(ch ...<-chan int) <-chan int {
 	}()
 	return c
 }
+
 // this won't work because we need to loop tro the chan
 /* func factorize(start, stop int) <-chan int {
 	out := make(chan int)

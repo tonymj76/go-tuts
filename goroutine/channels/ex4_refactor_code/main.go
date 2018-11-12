@@ -15,6 +15,7 @@ func getIt(str ...string) <-chan string {
 	}()
 	return ch
 }
+
 // recieve only since we are closing the chan when it recieved an item
 func recStr(str <-chan string) chan string {
 	addstr := make(chan string)
@@ -28,8 +29,8 @@ func recStr(str <-chan string) chan string {
 	return addstr
 }
 func main() {
-	for n := range recStr(getIt("Anthony", "Bobby")){
+	for n := range recStr(getIt("Anthony", "Bobby")) {
 		fmt.Println(n)
 	}
-	
+
 }

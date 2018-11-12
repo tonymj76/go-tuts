@@ -7,7 +7,9 @@ import (
 	"log"
 	"os"
 )
+
 const fileName = "d.json"
+
 // Record of my files
 type Record struct {
 	Name      string

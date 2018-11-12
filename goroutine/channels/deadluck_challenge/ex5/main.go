@@ -1,23 +1,23 @@
 package main
 
 import (
-	"strconv"
 	"fmt"
+	"strconv"
 )
 
 func increment(n int) <-chan string {
 	out := make(chan string)
 	done := make(chan bool)
-	for i:=0; i<n; i++{
+	for i := 0; i < n; i++ {
 		go func(i int) {
-			for j:=0; j<20; j++{
-				out <- fmt.Sprint("count: NO"+strconv.Itoa(i)+" "+strconv.Itoa(j))
+			for j := 0; j < 20; j++ {
+				out <- fmt.Sprint("count: NO" + strconv.Itoa(i) + " " + strconv.Itoa(j))
 			}
 			done <- true
 		}(i)
 	}
 	go func() {
-		for i:=0; i<n; i++{
+		for i := 0; i < n; i++ {
 			<-done
 		}
 		close(out)
@@ -27,9 +27,9 @@ func increment(n int) <-chan string {
 
 func main() {
 	var count int
-	for n:= range increment(2){
+	for n := range increment(2) {
 		fmt.Println(n)
-		count ++
+		count++
 	}
 	fmt.Println(count)
 }

@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
-	"encoding/json"
 )
 
 type identification struct {
@@ -11,16 +11,17 @@ type identification struct {
 	Phone int
 	Email string
 }
-func (n *identification) String() string{
+
+func (n *identification) String() string {
 	return fmt.Sprintf()
 }
 func main() {
 	jsonText := []byte(`[
         {"Name": "ID1", "Phone": 0, "Email": "email@email.com"}
 	 ]`)
-	 
+
 	var idents []identification
-	if err := json.Unmarshal(jsonText, &idents); err != nil{
+	if err := json.Unmarshal(jsonText, &idents); err != nil {
 		log.Println(err)
 	}
 	fmt.Println(idents)

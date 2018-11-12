@@ -19,7 +19,7 @@ func main() {
 	/* for {
 		fmt.Println(<-c)
 	} */
-	for n:=range c{
+	for n := range c {
 		fmt.Println(n)
 	}
 }
