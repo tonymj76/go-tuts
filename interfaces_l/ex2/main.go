@@ -39,4 +39,9 @@ func main() {
 	fmt.Println(t)
 	fmt.Println(x)
 
+	// ordering by len
+	state := []string{"Abia", "Adamawa", "Anambra", "Akwa Ibom", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Enugu", "Edo", "Ekiti", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"}
+	fmt.Println()
+	sort.Slice(state, func(i, j int) bool { return len(state[i]) > len(state[j]) })
+	fmt.Println(state)
 }
