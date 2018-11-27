@@ -35,7 +35,7 @@ func writeDataJSON() {
 	var hR []Record
 	hR = append(hR, holdRecord)
 	//os.Create(fileName)
-	dairyFile, err := os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, 0666)
+	dairyFile, err := os.OpenFile(fileName, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
 	defer dairyFile.Close()
 	check(err)
 	json.NewEncoder(dairyFile).Encode(&hR)
