@@ -15,12 +15,15 @@ fun */
 
 package main
 
-import "fmt"
+import ("fmt"
+	"errors"
+)
 
 type people struct {
+	limitedTries
 	name  string
 	age   int
-	inter giveName
+	
 }
 
 type limitedTries struct {
@@ -46,7 +49,10 @@ type giveName interface {
 
 // Note this method and why i don't use := in s, err
 func (n *limitedTries) myName() (s string, err error) {
-	s, err = n.I.myName()
+	if len(n.name) > 0 {
+		s, err = n.name, nil
+	}
+	s, err = "not a valid name", errors.New("name can't be empty")
 	return
 }
 
@@ -56,8 +62,8 @@ func (n *company) myName() {
 
 // i have my struct type and interface then a function that will implement my interface...
 func giveNames(inter giveName) {
-	m, _ := inter.(*limitedTries)
-	fmt.Println(m.name)
+	name, _ := inter.myName()
+	fmt.Println(name)
 }
 func main() {
 	p1 := people{
@@ -78,5 +84,5 @@ func main() {
 	}
 
 	fmt.Println(c.job[2])
-	giveNames(p1.inter)
+	giveNames(&p1)
 }
