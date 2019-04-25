@@ -30,4 +30,10 @@ func (t *together) String() string{
 func main() {
 	holder := New("Loves each other")
 	fmt.Println(holder)
+	holder2 := &together{"another way"}
+	factor(holder2)
+}
+
+func factor(t Tony) {
+	fmt.Println(t.Ifeoma())
 }
