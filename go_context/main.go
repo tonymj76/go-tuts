@@ -24,7 +24,7 @@ func main() {
 	// time.AfterFunc(time.Second, cancel)
 
 	ctx, cancel := context.WithTimeout(bctx, time.Second)
-	cancel()
+	defer cancel()
 
 	mySleepAndTalk(ctx, 5*time.Second, "hello")
 }
