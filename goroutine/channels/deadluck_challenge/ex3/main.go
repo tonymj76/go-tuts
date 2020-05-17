@@ -8,6 +8,8 @@ func main() {
 	c := make(chan int)
 
 	go func() {
+		// close the chan once we are done
+		defer close(c)
 		for i := 0; i < 10; i++ {
 			c <- i
 		}

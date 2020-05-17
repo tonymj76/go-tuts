@@ -11,11 +11,11 @@ func main() {
 		num = <-c
 		fmt.Println(num)
 	}()
-	c <- 1
+	c <- 2
 	close(c)
 	// the best way is this
 	// make a chan in the main function
-	ch := make(chan int) 
+	ch := make(chan int)
 	// create a go routine that sends to the chan created in main
 	go func() {
 		// send value
