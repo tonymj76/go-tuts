@@ -42,24 +42,55 @@ func walker3(strs []string) <-chan string {
 	return strStreem
 }
 
+//We can't close here because we want the walkers to finish all the works giving to them
+func walker4(strStream <-chan string, reverseStrStream chan<- string) {
+	for str := range strStream {
+		reverseStrStream <- reverse(str)
+	}
+}
+
 func main() {
 	var wg sync.WaitGroup
 	str := "this just send the data to the channel and main exits without waithing for the goroutine"
-	s := strings.Fields(str)
-	// reverseStrStream := make(chan string) // Q. how can you do this with buffer channels
+	strSlice := strings.Fields(str)
+
+	// Q. how can you do this with buffer channels
+	reverseStrStream := make(chan string)
+	strStream := make(chan string, len(strSlice))
+
+	// create a walker
+	for i := 0; i < (len(strSlice) / 2); i++ {
+		go walker4(strStream, reverseStrStream)
+	}
+
+	go func() {
+		for _, s := range strSlice {
+			strStream <- s
+		}
+	}()
 
 	// walker(s, reverseStrStream)
 	// for i := 0; i < len(s); i++ {
 	// 	fmt.Println(<-reverseStrStream)
 	// }
-	for reverseStr := range walker3(s) {
-		fmt.Println(reverseStr)
-	}
 
+	//walker 3
+	// for reverseStr := range walker3(strSlice) {
+	// 	fmt.Println(reverseStr)
+	// }
+
+	//walker 4
+	for i := 0; i < len(strSlice); i++ {
+		fmt.Println(<-reverseStrStream)
+	}
+	close(reverseStrStream)
+	close(strStream)
+
+	//this just shows that closing a chan will unblock all goroutines
 	begin := make(chan interface{})
 	for i := 0; i < 5; i++ {
 		wg.Add(1)
-		go func(x int) {
+		go func(x int) { //this func will not run unless we close the chann or send to it
 			defer wg.Done()
 
 			fmt.Printf("%v has begun %v\n", x, <-begin)
