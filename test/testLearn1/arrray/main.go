@@ -18,6 +18,19 @@ func mapping(node int, from []int, to []int) {
 			newMap[n] = append(newMap[n], to[index])
 		}
 	}
+	// remove duplicate numbers
+	// dubp := make(map[int]struct{})
+	// for key, values := range newMap {
+	// 	for _, value := range values {
+	// 		if _, ok := dubp[value]; !ok {
+	// 			dubp[value] = struct{}{}
+	// 			newMap[key] = append(newMap[key], value)
+	// 		}
+	// 	}
+
+	// }
+	// fmt.Println(dubp)
+	fmt.Println(newMap)
 	for key, value := range newMap {
 		for v := 0; v < len(value); v++ {
 			if h, ok := newMap[value[v]]; ok {
@@ -62,6 +75,6 @@ func mapping(node int, from []int, to []int) {
 }
 
 func main() {
-	mapping(8, []int{8, 5}, []int{1, 8})
+	// mapping(8, []int{8, 5}, []int{1, 8})
 	mapping(16, []int{6, 11, 9, 5, 11, 9, 15, 9}, []int{13, 15, 12, 14, 15, 16, 1, 16})
 }
