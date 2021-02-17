@@ -25,9 +25,9 @@ func (t *together) Ifeoma() string {
 	return t.text
 }
 
-// func (t *together) String() string{
-// 	return fmt.Sprintf("%v", t.text)
-// }
+func (t *together) String() string {
+	return fmt.Sprintf("%v", t.text)
+}
 func main() {
 	holder := New("Loves each other")
 	fmt.Println(holder)
