@@ -15,15 +15,15 @@ fun */
 
 package main
 
-import ("fmt"
+import (
 	"errors"
+	"fmt"
 )
 
 type people struct {
 	limitedTries
-	name  string
-	age   int
-	
+	name string
+	age  int
 }
 
 type limitedTries struct {
@@ -44,7 +44,7 @@ type company struct {
 }
 
 type giveName interface {
-	myName() (s string, err error)
+	myName() (string, error)
 }
 
 // Note this method and why i don't use := in s, err
