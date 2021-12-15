@@ -14,7 +14,7 @@ func fatorial(x int) int {
 
 func resultFatorial() {
 	var num int
-	fmt.Print("what factorial do you want to find: ")
+	fmt.Print("what addedNums do you want to find: ")
 	fmt.Scan(&num)
 	fmt.Println(fatorial(num))
 	fmt.Printf("%T\n", num)
