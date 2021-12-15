@@ -16,7 +16,7 @@ func main() {
 	fmt.Println("Start Goroutines")
 	// goroutine
 	go func() {
-		// defer done untill the goroutine finishes
+		// defer done until the goroutine finishes
 		defer wg.Done()
 		for count := 0; count < 3; count++ {
 			for l := 'A'; l < 'A'+26; l++ {
