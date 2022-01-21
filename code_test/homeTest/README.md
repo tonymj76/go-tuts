@@ -18,7 +18,7 @@ go run main.go
 I created Struct to describe the data and a method
 that will compute the aggregate of successful rate.
 
-I created 100 goroutines workers to manage the concurrent work being performed.
+I created 100 goroutines workers to manage all the concurrent work being performed.
 The worker function takes two arguments a receiver channel and a sender channel.
 then I created a buffered channel with a cap of 100, which means i can send an item without 
 waiting for a receiver to read the item. This is a performance increase, as it will allow all the goroutines to start immediately.
