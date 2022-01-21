@@ -39,7 +39,7 @@ func finMaxSum(n []int, k int) int {
 		currentRunningSum += n[i]
 		if i >= k-1 {
 			maxValue = math.Max(float64(currentRunningSum), maxValue)
-			currentRunningSum -= n[i-(k-1)]
+			currentRunningSum -= n[i-k-1]
 		}
 	}
 	return int(maxValue)
