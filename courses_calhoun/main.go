@@ -6,15 +6,17 @@ import (
 )
 
 func main() {
-	n := []int{1, 3, 5, 8, 4}
-
-	n = append([]int{7}, n...)
-	fmt.Println(Reverse("demeyor@76"))
-	fmt.Println(ReverseList(n))
-	fmt.Println([]rune("0"), string(49))
-	fmt.Println(finMaxSum([]int{4, 2, 1, 7, 8, 1, 2, 8, 1, 0}, 3))
-	fmt.Println()
-	fmt.Println(finSmallestSum(8, []int{4, 2, 2, 7, 8, 1, 2, 8, 10}))
+	//n := []int{1, 3, 5, 8, 4}
+	//
+	//n = append([]int{7}, n...)
+	//fmt.Println(Reverse("demeyor@76"))
+	//fmt.Println(ReverseList(n))
+	//fmt.Println([]rune("0"), string(49))
+	//fmt.Println(finMaxSum([]int{4, 2, 1, 7, 8, 1, 2, 8, 1, 0}, 3))
+	//fmt.Println(longestSubstringKDistinct("aaahhibc", 2))
+	fmt.Println(longestSubstringKDistinct("ytsseeeteewq", 3))
+	//fmt.Println(twoSum([]int{3, 2, 3}, 6))
+	//fmt.Println(finSmallestSum(8, []int{4, 2, 2, 7, 8, 1, 2, 8, 10}))
 }
 
 func Reverse(word string) string {
@@ -39,7 +41,7 @@ func finMaxSum(n []int, k int) int {
 		currentRunningSum += n[i]
 		if i >= k-1 {
 			maxValue = math.Max(float64(currentRunningSum), maxValue)
-			currentRunningSum -= n[i-k-1]
+			currentRunningSum -= n[i-(k-1)]
 		}
 	}
 	return int(maxValue)
@@ -59,3 +61,94 @@ func finSmallestSum(target int, list []int) int {
 	}
 	return int(minNumber)
 }
+
+func longestSubstringKDistinct(letters string, k int) int {
+	var windowStart int
+	var maxLength float64
+	hashLetters := make(map[rune]int)
+	for windowEnd, letter := range letters {
+		rightChar := letter
+		hashLetters[rightChar]++
+		for len(hashLetters) > k {
+			leftChar := rune(letters[windowStart])
+			hashLetters[leftChar]--
+			if value, ok := hashLetters[leftChar]; ok && value == 0 {
+				delete(hashLetters, leftChar)
+			}
+			windowStart++
+		}
+		maxLength = math.Max(maxLength, float64(windowEnd-windowStart+1))
+	}
+	return int(maxLength)
+}
+
+func twoSum(list []int, k int) []int {
+	ans := make([]int, 2)
+	var windowStart int
+	currSum := 0
+	for endingPoint := 0; endingPoint < len(list); endingPoint++ {
+		currSum += list[endingPoint]
+		for currSum >= k {
+			if currSum == k {
+				ans[0], ans[1] = windowStart, endingPoint
+				return ans
+			}
+			currSum -= list[windowStart]
+			windowStart++
+		}
+
+	}
+	return ans
+}
+
+func twoSum3(nums []int, target int) []int {
+	m := make(map[int]int) // [num][index]
+	for i, v := range nums {
+		index, ok := m[target-v]
+		if ok {
+			return []int{i, index}
+		}
+		m[v] = i
+	}
+	return []int{}
+}
+
+func twoSum2(list []int, k int) []int {
+	index := make(map[int]int)
+	for i, item := range list {
+		target := k - item
+		if idx, ok := index[target]; ok {
+			return []int{i, idx}
+		}
+		index[item] = i
+	}
+	return nil
+}
+
+func TestCase(fn func(letters string, k int) int) {
+	testCase := []struct {
+		l       string
+		want, k int
+	}{
+		{"jsfeekh", 3, 2},
+		{"aaahhibc", 5, 2},
+		{"ytsseeeteewq", 6, 2},
+		{"ytsseeeteewq", 9, 3},
+	}
+	for _, tc := range testCase {
+		got := fn(tc.l, tc.k)
+		if got == tc.want {
+			fmt.Println("PASS")
+		} else {
+			fmt.Println("FAIL")
+		}
+	}
+}
+
+const holder = `
+	Find the longest substring length with K distinct characters in K
+find the longest contiguous sequence of character such that the number of characters that are distinct
+does not exceed the value of 2 so there can be one character of a really long length or there are
+two characters of a really long length but once we had a third character into the mix we are violating the
+criteria
+`
