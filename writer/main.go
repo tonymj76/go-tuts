@@ -12,6 +12,7 @@ func check(e error) {
 		panic(e)
 	}
 }
+
 func main() {
 	by := []byte("hello\nworld")
 	err := ioutil.WriteFile("go_writer", by, 0644)
