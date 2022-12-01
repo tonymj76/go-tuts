@@ -16,7 +16,7 @@ func main() {
 	var credential Credential
 	router.POST("/", func(ctx *gin.Context) {
 		if err := ctx.ShouldBindJSON(&credential); err != nil {
-			ctx.JSON(http.StatusBadGateway, gin.H{"error": err.Error()})
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 		log.Println(credential)

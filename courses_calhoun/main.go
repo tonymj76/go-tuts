@@ -82,25 +82,6 @@ func longestSubstringKDistinct(letters string, k int) int {
 	return int(maxLength)
 }
 
-func twoSum(list []int, k int) []int {
-	ans := make([]int, 2)
-	var windowStart int
-	currSum := 0
-	for endingPoint := 0; endingPoint < len(list); endingPoint++ {
-		currSum += list[endingPoint]
-		for currSum >= k {
-			if currSum == k {
-				ans[0], ans[1] = windowStart, endingPoint
-				return ans
-			}
-			currSum -= list[windowStart]
-			windowStart++
-		}
-
-	}
-	return ans
-}
-
 func twoSum3(nums []int, target int) []int {
 	m := make(map[int]int) // [num][index]
 	for i, v := range nums {
@@ -111,18 +92,6 @@ func twoSum3(nums []int, target int) []int {
 		m[v] = i
 	}
 	return []int{}
-}
-
-func twoSum2(list []int, k int) []int {
-	index := make(map[int]int)
-	for i, item := range list {
-		target := k - item
-		if idx, ok := index[target]; ok {
-			return []int{i, idx}
-		}
-		index[item] = i
-	}
-	return nil
 }
 
 func TestCase(fn func(letters string, k int) int) {
