@@ -7,8 +7,12 @@ int32 = 32 bits
 how many bytes in 32 bits? (32/8 = bytes) 4bytes
 UTF-8 is a 4 byte coding scheme
 we have 0s and 1s to represent character in computer so if we have 2bits/int
-we can represnt 2^2 = 4 char so we have int32 which means we have 2^32 ways to represent a character.
+we can represent 2^2 = 4 char so we have int32 which means we have 2^32 ways to represent a character.
 
 strings are collection of runes.... eg []byte("hello") due to string are made of character this return a slice
-of bits that the character represence
+of bits that the character represent
+
+definition of Rune
+rune in Go is a data type that stores codes that represent Unicode characters.
+Unicode is actually the collection of all possible characters present in the whole world.
 

@@ -1,0 +1,76 @@
+/*
+
+function generatePoint(x1, y1, x2, y2) {
+    const point1 = (x1 - x2) ** 2;
+    const point2 = (y1 - y2) ** 2;
+
+    return parseFloat(Math.sqrt(point1 + point2).toFixed(2));
+}
+function pointsBelong(x1, y1, x2, y2, x3, y3, xp, yp, xq, yq) {
+    // Write your code here
+    const lineAB = generatePoint(x1, y1, x2, y2);
+    const lineBC = generatePoint(x2, y2, x3, y3);
+    const lineAC = generatePoint(x1, y1, x3, y3);
+
+    const maxX = Math.max(x1, x2, x3);
+    const maxY = Math.max(y1, y2, y3);
+    const minX = Math.min(x1, x2, x3);
+    const minY = Math.min(y1, y2, y3);
+
+    const isTriangle = (
+        ((lineAB + lineBC) > lineAC) &&
+        ((lineBC + lineAC) > lineAB) &&
+        ((lineAB + lineAC) > lineBC)
+    )
+
+    const containsPointP = xp >= minX && xp <= maxX && yp >= minY && yp <= maxY;
+    const containsPointQ = xq >= minX && xq <= maxX && yq >= minY && yq <= maxY;
+
+    if (!isTriangle) {
+        return 0;
+    }
+
+    if (containsPointP && containsPointQ) {
+        return 3;
+    }
+
+    if (!containsPointQ && !containsPointP) {
+        return 4
+    }
+
+    if (containsPointP && !containsPointQ) {
+        return 1;
+    }
+
+    if (!containsPointP && containsPointQ) {
+        return 2;
+    }
+}
+*/
+
+/*
+ function closestNumbers(numbers) {
+	numbers.sort((a, b) => a - b);
+
+	let result = [];
+	let min = Infinity;
+	for (let i = 0; i < numbers.length - 1; i++) {
+		const curr = numbers[i];
+		const next = numbers[i+1];
+		const diff = Math.abs(next - curr);
+
+		if (diff < min) {
+			result = [];
+			min = diff;
+		}
+
+		if (diff === min) {
+			result.push([curr, next]);
+		}
+	}
+
+	result.forEach(el => {
+		console.log(el[0], el[1]);
+	})
+}
+*/
