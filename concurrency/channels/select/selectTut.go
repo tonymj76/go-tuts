@@ -130,7 +130,7 @@ func freeNews(news chan<- News) {
 		}
 	}(resp.Body)
 
-	if resp.StatusCode == 200 {
+	if resp.StatusCode != 200 {
 		fmt.Printf("Free News Response StatusCode %v Status %v\n", resp.StatusCode, resp.Status)
 		return
 	}
