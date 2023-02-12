@@ -12,7 +12,7 @@ func main() {
 	//fmt.Println(Reverse("demeyor@76"))
 	//fmt.Println(ReverseList(n))
 	//fmt.Println([]rune("0"), string(49))
-	//fmt.Println(finMaxSum([]int{4, 2, 1, 7, 8, 1, 2, 8, 1, 0}, 3))
+	fmt.Println(finMaxSum([]int{4, 2, 1, 7, 8, 1, 2, 8, 1, 0}, 3))
 	//fmt.Println(longestSubstringKDistinct("aaahhibc", 2))
 	fmt.Println(longestSubstringKDistinct("ytsseeeteewq", 3))
 	//fmt.Println(twoSum([]int{3, 2, 3}, 6))
@@ -115,7 +115,7 @@ func TestCase(fn func(letters string, k int) int) {
 }
 
 const holder = `
-	Find the longest substring length with K distinct characters in K
+Find the longest substring length with K distinct characters in K
 find the longest contiguous sequence of character such that the number of characters that are distinct
 does not exceed the value of 2 so there can be one character of a really long length or there are
 two characters of a really long length but once we had a third character into the mix we are violating the
