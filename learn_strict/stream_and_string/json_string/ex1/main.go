@@ -13,7 +13,7 @@ type identification struct {
 }
 
 func (n *identification) String() string {
-	return fmt.Sprintf()
+	return fmt.Sprintf("")
 }
 func main() {
 	jsonText := []byte(`[
