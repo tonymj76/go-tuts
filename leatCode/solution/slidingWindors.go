@@ -1,7 +1,6 @@
 package solution
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -25,24 +24,37 @@ func LengthOfLongestSubstring(s string) int {
 	return int(maxValue)
 }
 
-func TestCaseSubSgtring(fn func(s string) int) {
-	testCase := []struct {
-		want int
-		cs   string
-	}{
-		{cs: "abcabcbb", want: 3},
-		{cs: "bbbbb", want: 1},
-		{cs: "pwwkew", want: 3},
-		{cs: "", want: 0},
-		{cs: " ", want: 1},
-		{cs: "avrd", want: 4},
+/*
+You are given a string s and an integer k.
+You can choose any character of the string and change it to
+any other uppercase English character. You can perform this
+operation at most k times.
+
+Return the length of the longest substring containing the same
+letter you can get after performing the above operations.
+*/
+
+func characterReplacement(s string, k int) int {
+	var startW int
+	result := 0.0
+	hashMap := make(map[rune]int)
+	for endW, ru := range s {
+		hashMap[ru]++
+		for (endW - startW - getKeyMax(hashMap) + 1) > k {
+			hashMap[rune(s[startW])]--
+			startW++
+		}
+		result = math.Max(result, float64(endW-startW+1))
 	}
-	for _, tc := range testCase {
-		got := fn(tc.cs)
-		if got == tc.want {
-			fmt.Println("PASS")
-		} else {
-			fmt.Printf("Faild: want %d ->> got %d\n", tc.want, got)
+	return int(result)
+}
+
+func getKeyMax(hash map[rune]int) int {
+	var max int
+	for _, v := range hash {
+		if max < v {
+			max = v
 		}
 	}
+	return max
 }
