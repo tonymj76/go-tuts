@@ -12,7 +12,6 @@ func TestSum(t *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
 		{
 			name: "sum 3 and 8",
 			args: args{x: 3, y: 8},
