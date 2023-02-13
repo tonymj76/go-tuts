@@ -11,5 +11,4 @@ func main() {
 	solution.ProductExceptSelf([]int{1, 2, 3, 4})
 	fmt.Println()
 	fmt.Println(solution.MaxSlidingWindow([]int{9, 11}, 2))
-	solution.TestCaseSubSgtring(solution.LengthOfLongestSubstring)
 }

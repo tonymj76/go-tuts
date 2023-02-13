@@ -12,19 +12,20 @@ type Notification struct {
 	Content string
 }
 
-type pendingNotificatons map[int][]*Notification
+type pendingNotifications map[int][]*Notification
 
 func sendUserBatchNotifications(userId int, notifications []*Notification) {
 	fmt.Printf("Sending email to user with userId %d for pending notifications %v\n", userId, notifications)
 }
-func handlePendingUsersNotifications(pn pendingNotificatons, handler func(userId int, notifications []*Notification)) {
+
+func handlePendingUsersNotifications(pn pendingNotifications, handler func(userId int, notifications []*Notification)) {
 	for userId, notification := range pn {
 		handler(userId, notification)
 		delete(pn, userId)
 	}
 }
 
-func collectNewUsersNotifictions(pn pendingNotificatons) {
+func collectNewUsersNotifictions(pn pendingNotifications) {
 	randomNotifications := getRandomNotifications()
 	if len(randomNotifications) > 0 {
 		pn[randomNotifications[0].UserId] = randomNotifications
@@ -41,6 +42,7 @@ func getRandomNotifications() (notifications []*Notification) {
 	}
 	return
 }
+
 func main() {
 
 }
