@@ -44,5 +44,4 @@ func main() {
 	fmt.Println("holding main function")
 	<-closeLeak(done, writeString())
 	fmt.Println("done")
-	time.Sleep(2 * time.Second)
 }
